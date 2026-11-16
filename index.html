@@ -1,1 +1,352 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><div id=root></div><footer class=foot><div class=wrap><span>Group project · Desktop computer assembly and disassembly</span><span>3D models drawn for this page</span></div></footer><script src="app.js"></script></body></html>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Assembly and Disassembly of a Desktop Computer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: a pale 3D studio stage beside an info panel; scrolling scrubs the assembly. Navy hero and closing bands frame it. */
+:root {
+  --bg: #f3f5f9; --surface: #ffffff; --ink: #1b2438; --head: #14213d; --muted: #566074; --line: #d3dae6;
+  --stage-a: #ffffff; --stage-b: #f0f3f8; --stage-c: #dde3ee;
+  --band: #14213d; --band2: #1f3158; --band-line: #2c4170; --light: #c9d3e6; --light2: #9fb0cf;
+  --header-bg: #14213d; --foot-bg: #0e1830;
+  --amber: #f2a900; --on-amber: #14213d; --teal: #0e7c86; --teal-fill: #0e7c86;
+  --caption-bg: #fff4d6; --caption-ink: #14213d;
+  --btn-bg: #ffffff; --btn-ink: #14213d; --btn-main-bg: #14213d; --btn-main-ink: #ffffff; --btn-main-hover: #1f3158;
+  --rail-bg: rgba(20, 33, 61, .12); --rail-ink: #14213d; --rail-fill: #f6c94d;
+  --leader: #14213d; --dot-stroke: #14213d;
+  --pill-bg: #14213d; --pill-ink: #ffffff; --pill-line: #14213d;
+  --display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --hdr: calc(52px + env(safe-area-inset-top, 0px));
+  --gx-l: max(16px, env(safe-area-inset-left, 0px));
+  --gx-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1325; --surface: #121b31; --ink: #dfe6f3; --head: #f2f5fb; --muted: #9aa8c3; --line: #26334f;
+    --stage-a: #2b3a5c; --stage-b: #1b2641; --stage-c: #101831;
+    --band: #0d1730; --band2: #17244a; --band-line: #2c4170;
+    --header-bg: #0a1226; --foot-bg: #070d1c;
+    --teal: #62d2dc; --caption-bg: #3b3213; --caption-ink: #ffe9a8;
+    --btn-bg: #1a2744; --btn-ink: #e6ecf8; --btn-main-bg: #f2a900; --btn-main-ink: #14213d; --btn-main-hover: #ffbd2e;
+    --rail-bg: rgba(255, 255, 255, .14); --rail-ink: #e6ecf8; --rail-fill: #7a5a0c;
+    --leader: #c9d3e6; --dot-stroke: #0b1325;
+    --pill-bg: #0b1325; --pill-ink: #ffffff; --pill-line: #3a4b72;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1325; --surface: #121b31; --ink: #dfe6f3; --head: #f2f5fb; --muted: #9aa8c3; --line: #26334f;
+  --stage-a: #2b3a5c; --stage-b: #1b2641; --stage-c: #101831;
+  --band: #0d1730; --band2: #17244a; --band-line: #2c4170;
+  --header-bg: #0a1226; --foot-bg: #070d1c;
+  --teal: #62d2dc; --caption-bg: #3b3213; --caption-ink: #ffe9a8;
+  --btn-bg: #1a2744; --btn-ink: #e6ecf8; --btn-main-bg: #f2a900; --btn-main-ink: #14213d; --btn-main-hover: #ffbd2e;
+  --rail-bg: rgba(255, 255, 255, .14); --rail-ink: #e6ecf8; --rail-fill: #7a5a0c;
+  --leader: #c9d3e6; --dot-stroke: #0b1325;
+  --pill-bg: #0b1325; --pill-ink: #ffffff; --pill-line: #3a4b72;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--body); overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--header-bg); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.hero, .comp, .band { scroll-margin-top: var(--hdr); }
+
+/* header */
+.top { position: fixed; z-index: 30; left: 0; right: 0; top: 0; height: var(--hdr); padding: env(safe-area-inset-top, 0px) var(--gx-r) 0 var(--gx-l);
+  display: flex; align-items: center; gap: 20px; background: var(--header-bg); color: #fff; }
+.brand { font: 600 15px/1 var(--display); letter-spacing: .02em; white-space: nowrap; display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand i { width: 14px; height: 14px; background: var(--amber); transform: skewX(-24deg); display: inline-block; }
+.nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; margin-left: auto; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { flex: none; padding: 8px 12px; border-radius: 999px; font: 500 13px/1 var(--body); text-decoration: none; color: var(--light); }
+.nav a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.nav a.on { background: var(--amber); color: var(--on-amber); }
+
+/* hero */
+.hero { background: var(--band); color: #fff; padding-top: calc(var(--hdr) + 56px); padding-bottom: 64px; overflow: hidden; position: relative; }
+.wrap { padding-left: var(--gx-l); padding-right: var(--gx-r); max-width: 1240px; margin: 0 auto; position: relative; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin: 0 0 16px; }
+.hero h1 { font-size: clamp(34px, 5.6vw, 68px); line-height: 1.04; max-width: 14ch; font-weight: 700; color: #fff; }
+.hero .lead { max-width: 52ch; font-size: clamp(16px, 1.6vw, 20px); color: var(--light); margin: 22px 0 0; }
+.hero .how { max-width: 52ch; color: var(--light2); margin: 12px 0 0; font-size: 15px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; max-width: 640px; }
+.chips a { padding: 10px 16px; border-radius: 999px; background: var(--band2); color: #fff; font: 500 14px/1 var(--body); text-decoration: none; border: 1px solid var(--band-line); }
+.chips a:hover { background: var(--amber); color: var(--on-amber); border-color: var(--amber); }
+.layers { position: absolute; right: -40px; top: calc(var(--hdr) + 24px); width: min(46vw, 560px); pointer-events: none; opacity: .95; }
+.layers div { height: 74px; margin-bottom: 26px; transform: skewX(-32deg); border: 1px solid #fff; }
+.layers div:nth-child(1) { background: #e6eaf2; } .layers div:nth-child(2) { background: var(--amber); }
+.layers div:nth-child(3) { background: #0e7c86; } .layers div:nth-child(4) { background: #7a8394; }
+.scrollcue { margin-top: 34px; font: 500 13px/1 var(--mono); color: var(--amber); letter-spacing: .08em; text-transform: uppercase; }
+
+/* component sections */
+.comp { position: relative; height: var(--len, 480vh); }
+.stick { position: sticky; top: var(--hdr); height: calc(100vh - var(--hdr)); height: calc(100dvh - var(--hdr)); display: grid; grid-template-columns: minmax(0, 1fr) 370px; background: var(--bg); }
+.stage { position: relative; overflow: hidden; min-width: 0; min-height: 0;
+  background: radial-gradient(ellipse at 50% 45%, var(--stage-a) 0%, var(--stage-b) 55%, var(--stage-c) 100%); }
+.host { position: absolute; inset: 0; }
+.v-canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; display: block; }
+.v-canvas.grab { cursor: grabbing; }
+.v-canvas:focus-visible { outline-offset: -4px; }
+.v-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.v-leader { stroke: var(--leader); stroke-width: 1.3; }
+.v-dot { fill: var(--amber); stroke: var(--dot-stroke); stroke-width: 1.4; }
+.v-labels { position: absolute; inset: 0; pointer-events: none; }
+.v-label { position: absolute; transform: translateY(-50%); font: 600 14px/1.25 var(--body); color: var(--head); }
+.v-label.L { text-align: right; } .v-label.R { text-align: left; }
+.pill { position: absolute; left: var(--gx-l); top: 14px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
+  background: var(--pill-bg); color: var(--pill-ink); border: 1px solid var(--pill-line); font: 600 13px/1 var(--body); max-width: calc(100% - 32px); z-index: 3; }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); flex: none; }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; font: 500 13px/1 var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; pointer-events: none; z-index: 2; }
+.loading[hidden] { display: none; }
+.tools { position: absolute; right: var(--gx-r); top: 12px; display: flex; gap: 6px; z-index: 3; }
+.tools button, .actions button { border: 1px solid var(--line); background: var(--btn-bg); border-radius: 8px; padding: 8px 12px; font: 600 13px/1 var(--body); cursor: pointer; color: var(--btn-ink); }
+.tools button:hover, .actions button:hover { border-color: var(--head); }
+.actions button.main { background: var(--btn-main-bg); color: var(--btn-main-ink); border-color: var(--btn-main-bg); }
+.actions button.main:hover { background: var(--btn-main-hover); }
+.hint { position: absolute; left: 50%; transform: translateX(-50%); bottom: 58px; max-width: calc(100% - 32px); white-space: nowrap; padding: 8px 14px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-ink); border: 1px solid var(--pill-line);
+  font: 500 12px/1 var(--mono); opacity: 0; transition: opacity .3s; pointer-events: none; letter-spacing: .02em; }
+.stage[data-phase="inspect"] .hint { opacity: 1; }
+.rail { position: absolute; left: var(--gx-l); right: var(--gx-r); bottom: 12px; display: flex; gap: 4px; z-index: 3; }
+.rail button { position: relative; flex: var(--w) 1 0; min-width: 0; border: 0; background: var(--rail-bg); height: 34px; border-radius: 6px; overflow: hidden; cursor: pointer; padding: 0; text-align: left; }
+.rail button span { position: absolute; left: 8px; top: 0; bottom: 0; display: flex; align-items: center; font: 600 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--rail-ink); white-space: nowrap; z-index: 1; mix-blend-mode: normal; }
+.rail button b { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--rail-fill); }
+.rail button.tiny span { display: none; }
+
+.info { background: var(--surface); border-left: 1px solid var(--line); padding: 22px var(--gx-r) 18px 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.info .eyebrow { margin: 0; color: var(--teal); }
+.info h2 { font-size: 30px; line-height: 1.1; color: var(--head); font-weight: 700; }
+.caption { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--caption-bg); color: var(--caption-ink); font: 600 15px/1.35 var(--body); min-height: 3.6em; }
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 26px 1fr; gap: 8px; font-size: 14px; line-height: 1.35; color: var(--muted); padding: 4px 0; }
+.steps li::before { content: counter(s); font: 600 12px/20px var(--mono); width: 22px; height: 22px; text-align: center; border-radius: 50%; border: 1px solid var(--line); color: var(--muted); }
+.steps li.done { color: var(--ink); } .steps li.done::before { background: var(--teal-fill); border-color: var(--teal-fill); color: #fff; }
+.steps li.now { color: var(--head); font-weight: 600; } .steps li.now::before { background: var(--amber); border-color: var(--amber); color: var(--on-amber); }
+.info h3 { font-size: 15px; color: var(--head); }
+.about { margin: 0; font-size: 14px; color: var(--ink); }
+.tip { margin: 0; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.tip b { color: var(--head); }
+.actions { display: flex; gap: 8px; margin-top: auto; padding-top: 4px; flex-wrap: wrap; }
+
+/* closing bands */
+.band { background: var(--band); color: #fff; padding-block: 72px; }
+.band h2 { font-size: clamp(28px, 3.6vw, 44px); color: #fff; }
+.band .sub { color: var(--light); max-width: 60ch; margin: 12px 0 0; }
+.members { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 30px; list-style: none; padding: 0; }
+.members li { background: var(--band2); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.members .id { font: 500 12px/1 var(--mono); color: var(--amber); letter-spacing: .06em; }
+.members .nm { font: 600 17px/1.25 var(--display); overflow-wrap: anywhere; }
+.tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 30px; }
+.tips div { background: var(--band2); border-radius: 12px; padding: 20px; min-width: 0; }
+.tips h3 { font-size: 19px; margin: 0 0 8px; padding-left: 16px; position: relative; color: #fff; }
+.tips h3::before { content: ""; position: absolute; left: 0; top: .42em; width: 8px; height: 8px; background: var(--amber); transform: skewX(-24deg); }
+.tips p { margin: 0; color: var(--light); font-size: 15px; }
+.band + .band { padding-top: 0; }
+.foot { background: var(--foot-bg); color: var(--light2); font-size: 13px; padding-block: 22px; }
+.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) {
+  .stick { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 58%) minmax(0, 1fr); }
+  .info { border-left: 0; border-top: 1px solid var(--line); padding: 14px var(--gx-r) 12px var(--gx-l); gap: 10px; }
+  .info h2 { font-size: 22px; }
+  .info .about, .info .tip, .info h3 { display: none; }
+  .steps li { font-size: 13px; padding: 2px 0; }
+  .caption { font-size: 14px; min-height: 0; padding: 9px 12px; }
+  .layers { opacity: .35; }
+  .comp { --len: 420vh !important; }
+}
+@media (max-width: 700px) {
+  .v-label { font-size: 11px; }
+  .nav a { padding: 8px 10px; }
+  .brand span { display: none; }
+  .rail button span { font-size: 10px; left: 5px; }
+  .tools button { padding: 7px 9px; font-size: 12px; }
+  .hint { bottom: 54px; font-size: 11px; padding: 7px 11px; }
+  .hint .k { display: none; }
+  .steps { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  .steps li { grid-template-columns: 24px 1fr; }
+  .info .eyebrow { display: none; }
+  .actions button { padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .hint { transition: none; } }
+
+</style>
+
+<header class="top">
+  <a class="brand" href="#top"><i></i><span>Desktop computer assembly</span></a>
+  <nav class="nav" aria-label="Components"><a href="#keyboard">Keyboard</a><a href="#speaker">Speakers</a><a href="#system">System unit</a><a href="#monitor">Monitor</a><a href="#mouse">Mouse</a><a href="#desktop">Whole computer</a><a href="#group">Group</a></nav>
+</header>
+<main id="top">
+<section class="hero">
+  <div class="layers" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+  <div class="wrap">
+    <p class="eyebrow">Group project</p>
+    <h1>Assembly and Disassembly of a Desktop Computer</h1>
+    <p class="lead">To demonstrate the proper assembly and disassembly of a desktop computer.</p>
+    <p class="how">Scroll to take each part apart and put it back together. When it is assembled, drag to rotate it and use + and − to zoom in.</p>
+    <div class="chips"><a href="#keyboard">Keyboard</a><a href="#speaker">Speaker system</a><a href="#system">System unit</a><a href="#monitor">Monitor</a><a href="#mouse">Mouse</a><a href="#desktop">Whole computer</a></div>
+    <div class="scrollcue">Scroll to begin ↓</div>
+  </div>
+</section>
+
+<section class="comp" id="keyboard" aria-label="Keyboard exploded view">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 1 of 6</p>
+      <h2>Keyboard</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Place the structural plate</li><li>Seat the PCB and controller</li><li>Lay the membrane layer</li><li>Fit the outer casing</li><li>Press on the keycaps</li></ol>
+      <h3>What it does</h3>
+      <p class="about">The keyboard is the main input device. Pressing a key pushes a dome switch against the PCB matrix, and the controller chip sends that key&#x27;s code to the computer.</p>
+      <p class="tip"><b>Safety.</b> Disassemble in reverse: unplug the cable, pull keycaps, unclip the casing, then lift each layer.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="comp" id="speaker" aria-label="Speaker system exploded view">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 2 of 6</p>
+      <h2>Speaker System</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Mount the amplifier board</li><li>Seat the magnetic motor</li><li>Fit the woofer cone</li><li>Fit the tweeter</li><li>Snap on the front grille</li></ol>
+      <h3>What it does</h3>
+      <p class="about">A speaker turns an electrical signal into sound. The amplifier board boosts the signal, and the magnetic motor drives the woofer (low tones) while the tweeter plays high tones.</p>
+      <p class="tip"><b>Safety.</b> Disassemble in reverse: unplug power and audio, lift off the grille, unscrew the drivers, free the board.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="comp" id="system" aria-label="System unit exploded view">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 3 of 6</p>
+      <h2>System Unit</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Mount the PSU and I/O shield</li><li>Install the board, CPU and RAM</li><li>Add the GPU and network card</li><li>Fit the optical drive, HDD and SSD</li><li>Route the cables</li><li>Close the top cover and side panel</li></ol>
+      <h3>What it does</h3>
+      <p class="about">The system unit houses the computer&#x27;s core parts. The motherboard links everything: the CPU processes data, RAM holds working memory, the GPU draws graphics and the PSU powers it all.</p>
+      <p class="tip"><b>Safety.</b> Disassemble in reverse. Power off, unplug, and wear an anti-static wrist strap first.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="comp" id="monitor" aria-label="Monitor exploded view">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 4 of 6</p>
+      <h2>Monitor</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Start with the outer bezel frame</li><li>Stack the polarizer, color filter and liquid crystal</li><li>Add the LCD/LED panel</li><li>Fit the diffuser and LED backlight</li><li>Connect the control and power boards</li><li>Attach the stand and bracket</li></ol>
+      <h3>What it does</h3>
+      <p class="about">A flat-panel monitor shows the picture by stacking thin layers. LEDs at the back make light, the liquid crystal layer and color filter shape it into pixels, and the control board drives the panel.</p>
+      <p class="tip"><b>Safety.</b> Unplug the monitor first. Never press on the panel, and lay it face down on a soft cloth to work.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="comp" id="mouse" aria-label="Mouse exploded view">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 5 of 6</p>
+      <h2>Mouse</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Fit the base with Teflon feet</li><li>Seat the PCB and sensor</li><li>Solder in the microswitches</li><li>Install the scroll wheel and encoder</li><li>Clip on the top shell</li></ol>
+      <h3>What it does</h3>
+      <p class="about">The mouse is a pointing device. The optical sensor reads movement across the desk, the microswitches register clicks, and the scroll wheel&#x27;s encoder counts each turn for the microcontroller.</p>
+      <p class="tip"><b>Safety.</b> Disassemble in reverse: remove the screws under the feet, lift the shell, then free the wheel and PCB.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="comp" id="desktop" aria-label="Whole computer set up on a desk">
+  <div class="stick">
+    <div class="stage" data-phase="exploded">
+      <div class="host" data-host></div>
+      <div class="pill"><i></i><span data-pill>Exploded view</span></div>
+      <div class="loading" data-loading>Loading 3D model</div>
+      <div class="tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-reset>Reset view</button></div>
+      <div class="hint">Drag to rotate · <span class="k">Ctrl + scroll or </span>+ / − to zoom</div>
+      <div class="rail" role="group" aria-label="Jump to a stage"><button type="button" class="tiny" style="--w:6" data-a="0" data-b="0.06" aria-label="Exploded stage"><b></b><span>Exploded</span></button><button type="button" class="" style="--w:40" data-a="0.06" data-b="0.46" aria-label="Assemble stage"><b></b><span>Assemble</span></button><button type="button" class="" style="--w:20" data-a="0.46" data-b="0.66" aria-label="Inspect stage"><b></b><span>Inspect</span></button><button type="button" class="" style="--w:28" data-a="0.66" data-b="0.94" aria-label="Disassemble stage"><b></b><span>Disassemble</span></button><button type="button" class="tiny" style="--w:6" data-a="0.94" data-b="1.0" aria-label="Exploded stage"><b></b><span>Exploded</span></button></div>
+    </div>
+    <aside class="info">
+      <p class="eyebrow">Component 6 of 6</p>
+      <h2>Whole Computer</h2>
+      <p class="caption" data-caption aria-live="polite">All parts laid out. Scroll to start assembling.</p>
+      <ol class="steps"><li>Stand the system unit on the desk</li><li>Set the monitor in the middle</li><li>Place the keyboard in front of it</li><li>Put the mouse beside the keyboard</li><li>Position the two speakers</li></ol>
+      <h3>What it does</h3>
+      <p class="about">The five finished components are set up together on a desk. The system unit does the computing, the monitor and speakers give output, and the keyboard and mouse send input back.</p>
+      <p class="tip"><b>Safety.</b> Power off and unplug everything before you connect cables. Plug the power cable in last, and reverse the order to take it apart.</p>
+      <div class="actions"><button type="button" class="main" data-act="assemble">Assemble</button><button type="button" data-act="disassemble">Disassemble</button></div>
+    </aside>
+  </div>
+</section>
+<section class="band" id="group">
+  <div class="wrap">
+    <p class="eyebrow">The team</p>
+    <h2>Group members</h2>
+    <p class="sub">To demonstrate the proper assembly and disassembly of a desktop computer.</p>
+    <ul class="members"><li><span class="id">10693</span><span class="nm">Grace Bestman</span></li><li><span class="id">10960</span><span class="nm">Haanah Wesee</span></li><li><span class="id">12226</span><span class="nm">Harold Davies Jr</span></li><li><span class="id">11863</span><span class="nm">Harriet Holder</span></li><li><span class="id">12272</span><span class="nm">Hassan Massalay</span></li><li><span class="id">11304</span><span class="nm">Henry Ndama</span></li><li><span class="id">12296</span><span class="nm">J. Gbotoe Gardea</span></li><li><span class="id">11564</span><span class="nm">Jacob Jlatuh</span></li><li><span class="id">11717</span><span class="nm">James Kamara</span></li><li><span class="id">10693</span><span class="nm">Grace Bestman</span></li><li><span class="id">10960</span><span class="nm">Haanah Wesee</span></li></ul>
+  </div>
+</section>
+<section class="band" id="safety">
+  <div class="wrap">
+    <p class="eyebrow">Wrap up</p>
+    <h2>Conclusion and safety tips</h2>
+    <p class="sub">Every component is built from layers and modules that fit together in a set order, and come apart in the reverse order.</p>
+    <div class="tips"><div><h3>Power off and unplug</h3><p>Shut down, then disconnect the power cable and all peripherals before opening the case.</p></div><div><h3>Prevent static damage</h3><p>Wear an anti-static wrist strap, or touch bare metal on the case, to discharge yourself.</p></div><div><h3>Handle parts by the edges</h3><p>Hold boards and cards by their edges. Never touch gold contacts or chips.</p></div><div><h3>Reverse order, sort screws</h3><p>Take parts out in the reverse of assembly order and keep screws in labelled containers.</p></div></div>
+  </div>
+</section>
+</main>
+<footer class="foot"><div class="wrap"><span>Group project · Desktop computer assembly and disassembly</span><span>3D models drawn for this page</span></div></footer>
+<script src="app.js"></script>
+
+</body></html>
